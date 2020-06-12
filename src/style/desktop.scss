@@ -1,0 +1,111 @@
+@import "const";
+@import "mixin";
+
+.desktop {
+  #authorizationTitleDiv{
+    @include singleElement;
+    text-align: center;
+    margin-top: 10%;
+    font-size: 30px;
+  }
+  input:focus {
+    outline: none;
+  }
+
+  #modifyOptionDiv, #activeUserCheckboxDiv {
+    @include halfScreenDiv(left);
+  }
+
+  #signUpOptionDiv, #emptyFieldsCheckboxDiv {
+    @include halfScreenDiv(right);
+  }
+  .optionDiv{
+    margin-top: 10%;
+  }
+  .checkboxDiv{
+    margin-top:2%;
+  }
+  #separator{
+    clear:both;
+  }
+  input[type="text"], input[type="password"] {
+    @include inlineBlock;
+    background-color: $lightGrey;
+    width: 100%;
+  }
+
+  button {
+    @include inlineBlock;
+    text-align: center;
+    &:focus{
+      outline: none;
+    }
+  }
+
+  input[type="text"], input[type="password"] {
+    border-bottom: $commonBorder;
+    font-size: 20px;
+    margin-top: 1%;
+    @include singleElement;
+    @include hover;
+  }
+  label{
+    @include inlineBlock;
+    float: right;
+    width: 86%;
+    font-size: 20px;
+    margin-left: 1%;
+    vertical-align: bottom;
+  }
+  .optionButton{
+    font-size: 30px;
+    width: 100%;
+    background-color: $lightGrey;
+  }
+  #userMessageDiv{
+      @include singleElement;
+      margin-top: 2%;
+      font-size: 20px;
+      text-align: center;
+      clear: both;
+  }
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 10%;
+    float: left;
+    margin: 0;
+    background-color: $lightGrey;
+    border: $commonBorder;
+    position: relative;
+    vertical-align: bottom;
+
+    &:not(:checked) {
+      @include hover;
+    }
+
+    &:checked {
+      background-color: $violet;
+    }
+  }
+
+  #signUpOptionButton {
+    border-bottom: $commonBorder;
+    color: $violet;
+  }
+  .requestButton {
+    height: 40px;
+    width: 20%;
+    margin-top: 4%;
+    margin-left: 40%;
+    margin-right: 40%;
+    background-color: $turquoise;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    &:hover {
+      background-color: $hoverTurquoise;
+    }
+  }
+}

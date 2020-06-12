@@ -1,0 +1,31 @@
+@import "const";
+
+@mixin halfScreenDiv($float) {
+  @if $float == right {
+    margin-right: (50%-$singleElementWidth/2);
+  } @else {
+    margin-left: (50%-$singleElementWidth/2);
+  }
+  float: #{$float};
+  width: $singleElementWidth/2;
+
+}
+
+
+@mixin hover {
+  &:hover {
+    background-color: $grey;
+  }
+}
+
+@mixin singleElement {
+  width: $singleElementWidth;
+  margin-right: (100%-$singleElementWidth)/2;
+  margin-left: (100%-$singleElementWidth)/2;
+}
+
+@mixin inlineBlock {
+  display: inline-block;
+  border: none;
+  text-decoration: none;
+}
