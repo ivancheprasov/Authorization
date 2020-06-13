@@ -19,6 +19,7 @@ class AuthorizationForm extends React.Component {
     constructor(props) {
         super(props);
         this.props.setUserMessage("");
+        this.identifyDeviceType();
     }
 
     render() {
@@ -29,7 +30,9 @@ class AuthorizationForm extends React.Component {
                     WELCOME
                 </div>
                 <div id={"userMessageDiv"} className={deviceType}>
-                    {this.props.userMessage === "" ? <br/> : this.props.userMessage}
+                    {this.props.userMessage === "" ?
+                        <div><br/>{this.props.deviceType===deviceEnum.PHONE&&<br/>}</div> :
+                        this.props.userMessage}
                 </div>
                 <div id={"authorizationFormDiv"} className={deviceType}>
                     <form name={"authorizationForm"} className={deviceType}>
@@ -44,7 +47,6 @@ class AuthorizationForm extends React.Component {
                             value={this.props.username || ""}
                             onChange={event => this.usernameInputChange(event)}
                         />
-                        <br/>
                         <input
                             type={"password"}
                             name={"passwordInput"}
@@ -56,7 +58,6 @@ class AuthorizationForm extends React.Component {
                             value={this.props.password || ""}
                             onChange={event => this.passwordInputChange(event)}
                         />
-                        <br/>
                         <button
                             id={"signInButton"}
                             type={"button"}
@@ -73,8 +74,16 @@ class AuthorizationForm extends React.Component {
     }
     componentDidMount() {
         $(window).resize(()=>{
-            window.innerWidth > 1200? this.props.setDeviceType(deviceEnum.DESKTOP) : this.props.setDeviceType(deviceEnum.PHONE);
+            this.identifyDeviceType();
         });
+    }
+    identifyDeviceType() {
+        const width = window.innerWidth;
+        if (width >= 1000) {
+            this.props.setDeviceType(deviceEnum.DESKTOP);
+        } else {
+            this.props.setDeviceType(deviceEnum.PHONE);
+        }
     }
     hoverTextField(element) {
         const jquery = $(element);

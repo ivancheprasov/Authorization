@@ -1,0 +1,123 @@
+@import "const";
+@import "mixin";
+
+.mobile {
+  #authorizationTitleDiv {
+    @include singleElement($mobileElementWidth);
+    text-align: center;
+    margin-top: 37.5%;
+    font-size: 30px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  #modifyOptionDiv{
+    @include halfScreenDiv(left,$mobileElementWidth);
+  }
+
+  #signUpOptionDiv {
+    @include halfScreenDiv(right,$mobileElementWidth);
+  }
+
+  .optionDiv {
+    margin-top: 10%;
+  }
+
+  .checkboxDiv {
+    @include singleElement($mobileElementWidth);
+    margin-top: 10%;
+  }
+
+  #separator {
+    clear: both;
+  }
+
+  input[type="text"], input[type="password"] {
+    @include inlineBlock;
+    background-color: $lightGrey;
+    width: 100%;
+  }
+
+  button {
+    @include inlineBlock;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  #usernameInput{
+    margin-top: 5%;
+  }
+  input[type="text"], input[type="password"] {
+    border-bottom: $commonBorder;
+    font-size: 22px;
+    margin-top: 10%;
+    @include singleElement($mobileElementWidth);
+    @include hover;
+  }
+
+  label {
+    @include inlineBlock;
+    width: 86%;
+    font-size: 20px;
+    vertical-align: bottom;
+  }
+
+  .optionButton {
+    font-size: 25px;
+    width: 100%;
+    background-color: $lightGrey;
+  }
+
+  #userMessageDiv {
+    @include singleElement($mobileElementWidth);
+    margin-top: 7.5%;
+    font-size: 20px;
+    text-align: center;
+    clear: both;
+  }
+
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 10%;
+    float: right;
+    background-color: $lightGrey;
+    border: $commonBorder;
+    position: relative;
+    vertical-align: bottom;
+
+    &:not(:checked) {
+      @include hover;
+    }
+
+    &:checked {
+      background-color: $violet;
+    }
+  }
+
+  #signUpOptionButton {
+    border-bottom: $commonBorder;
+    color: $violet;
+  }
+
+  .requestButton {
+    height: 60px;
+    width: 60%;
+    margin: 15% 20% 2%;
+    background-color: $turquoise;
+    border-radius: 8px;
+    color: white;
+    font-size: 25px;
+    &:hover {
+      background-color: $hoverTurquoise;
+    }
+  }
+  #signInButton{
+    margin: 20%;
+  }
+}

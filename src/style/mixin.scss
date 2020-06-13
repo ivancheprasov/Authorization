@@ -1,13 +1,13 @@
 @import "const";
 
-@mixin halfScreenDiv($float) {
+@mixin halfScreenDiv($float,$width:$singleElementWidth) {
   @if $float == right {
-    margin-right: (50%-$singleElementWidth/2);
+    margin-right: (50%-$width/2);
   } @else {
-    margin-left: (50%-$singleElementWidth/2);
+    margin-left: (50%-$width/2);
   }
   float: #{$float};
-  width: $singleElementWidth/2;
+  width: $width/2;
 
 }
 
@@ -18,10 +18,10 @@
   }
 }
 
-@mixin singleElement {
-  width: $singleElementWidth;
-  margin-right: (100%-$singleElementWidth)/2;
-  margin-left: (100%-$singleElementWidth)/2;
+@mixin singleElement($width:$singleElementWidth) {
+  width: $width;
+  margin-right: (100%-$width)/2;
+  margin-left: (100%-$width)/2;
 }
 
 @mixin inlineBlock {

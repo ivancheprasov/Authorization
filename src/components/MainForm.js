@@ -31,7 +31,13 @@ class MainForm extends React.Component {
         super(props);
         this.props.setUserMessage("");
         this.props.setUsername("");
+        this.props.setFirstName("");
+        this.props.setLastName("");
         this.props.setPassword("");
+        this.props.isModifying(true);
+        this.props.isUserActive(true);
+        this.props.allowEmptyFields(false);
+        this.identifyDeviceType();
     }
 
     render() {
@@ -59,7 +65,9 @@ class MainForm extends React.Component {
                 </div>
                 <div id={"separator"} className={deviceType}/>
                 <div id={"userMessageDiv"} className={deviceType}>
-                    {this.props.userMessage === "" ? <br/> : this.props.userMessage}
+                    {this.props.userMessage === "" ?
+                        <div><br/>{this.props.deviceType===deviceEnum.PHONE&&<br/>}</div> :
+                        this.props.userMessage}
                 </div>
                 <div id={"mainInputDiv"} className={deviceType}>
                     <form name={"mainForm"} className={deviceType}>
@@ -74,7 +82,6 @@ class MainForm extends React.Component {
                             value={this.props.username || ""}
                             onChange={event => this.handleUsernameInputChange(event)}
                         />
-                        <br/>
                         <input
                             type={"text"}
                             name={"firstNameInput"}
@@ -86,7 +93,6 @@ class MainForm extends React.Component {
                             value={this.props.firstName || ""}
                             onChange={event => this.handleFirstNameInputChange(event)}
                         />
-                        <br/>
                         <input
                             type={"text"}
                             name={"lastNameInput"}
@@ -98,7 +104,6 @@ class MainForm extends React.Component {
                             value={this.props.lastName || ""}
                             onChange={event => this.handleLastNameInputChange(event)}
                         />
-                        <br/>
                         <input
                             type={"password"}
                             name={"passwordInput"}
@@ -110,7 +115,6 @@ class MainForm extends React.Component {
                             value={this.props.password || ""}
                             onChange={event => this.handlePasswordInputChange(event)}
                         />
-                        <br/>
                         <div id={"activeUserCheckboxDiv"} className={"checkboxDiv"}>
                             <input type={"checkbox"}
                                    id={"activeUserCheckbox"}
@@ -205,15 +209,24 @@ class MainForm extends React.Component {
 
     componentDidMount() {
         $(window).resize(() => {
-            window.innerWidth > 1200 ? this.props.setDeviceType(deviceEnum.DESKTOP) : this.props.setDeviceType(deviceEnum.PHONE);
+            this.identifyDeviceType();
         });
         this.hoverUnselectedButton("#signUpOptionButton");
     }
-
+    identifyDeviceType() {
+        const width = window.innerWidth;
+        if (width >= 1000) {
+            this.props.setDeviceType(deviceEnum.DESKTOP);
+        } else {
+            this.props.setDeviceType(deviceEnum.PHONE);
+        }
+    }
     componentDidUpdate() {
         const jquery = $("input[type=checkbox]");
         const width = jquery.width();
         jquery.css({"height": `${width}`});
+        const height = $("#signUpOptionButton").height();
+        $("#modifyOptionButton").css({"height":`${height}`});
     }
 
     handleModifyOptionClick() {
