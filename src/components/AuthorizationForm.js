@@ -79,7 +79,7 @@ class AuthorizationForm extends React.Component {
     }
     identifyDeviceType() {
         const width = window.innerWidth;
-        if (width >= 1000) {
+        if (width >= 1200) {
             this.props.setDeviceType(deviceEnum.DESKTOP);
         } else {
             this.props.setDeviceType(deviceEnum.PHONE);

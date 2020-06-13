@@ -10,14 +10,6 @@
   width: $width/2;
 
 }
-
-
-@mixin hover {
-  &:hover {
-    background-color: $grey;
-  }
-}
-
 @mixin singleElement($width:$singleElementWidth) {
   width: $width;
   margin-right: (100%-$width)/2;
@@ -28,4 +20,88 @@
   display: inline-block;
   border: none;
   text-decoration: none;
+}
+@mixin hover {
+  &:hover {
+    background-color: $grey;
+  }
+}
+@mixin firstLine($width:$singleElementWidth) {
+  @include singleElement($width);
+  text-align: center;
+  font-size: 30px;
+}
+@mixin textInput($width:$singleElementWidth){
+  @include singleElement($width);
+  @include inlineBlock;
+  @include hover;
+  background-color: $lightGrey;
+  border-bottom: $commonBorder;
+}
+@mixin button{
+  @include inlineBlock;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+}
+@mixin label{
+  @include inlineBlock;
+  width: 86%;
+  font-size: 20px;
+  vertical-align: bottom;
+}
+@mixin notification($width:$singleElementWidth) {
+  @include singleElement($width);
+  font-size: 20px;
+  text-align: center;
+  clear: both;
+}
+
+@mixin optionButton{
+  width: 100%;
+  background-color: $lightGrey;
+}
+@mixin checkbox{
+  -webkit-appearance: none;
+  display: inline-block;
+  cursor: pointer;
+  width: 10%;
+  background-color: $lightGrey;
+  border: $commonBorder;
+  position: relative;
+  vertical-align: bottom;
+  &:not(:checked) {
+    @include hover;
+  }
+
+  &:checked {
+    background-color: $violet;
+  }
+}
+@mixin requestButton{
+  background-color: $turquoise;
+  border-radius: 8px;
+  color: white;
+  &:hover {
+    background-color: $hoverTurquoise;
+  }
+}
+@mixin commonAttributes{
+  input:focus {
+    outline: none;
+  }
+  .optionDiv {
+    margin-top: 10%;
+  }
+  #separator {
+    clear: both;
+  }
+  button {
+    @include button;
+  }
+  #signUpOptionButton {
+    border-bottom: $commonBorder;
+    color: $violet;
+  }
 }

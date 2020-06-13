@@ -2,14 +2,11 @@
 @import "mixin";
 
 .desktop {
-  #authorizationTitleDiv{
-    @include singleElement;
-    text-align: center;
+  @include commonAttributes;
+
+  #authorizationTitleDiv {
+    @include firstLine;
     margin-top: 10%;
-    font-size: 30px;
-  }
-  input:focus {
-    outline: none;
   }
 
   #modifyOptionDiv, #activeUserCheckboxDiv {
@@ -19,93 +16,46 @@
   #signUpOptionDiv, #emptyFieldsCheckboxDiv {
     @include halfScreenDiv(right);
   }
-  .optionDiv{
-    margin-top: 10%;
-  }
-  .checkboxDiv{
-    margin-top:2%;
-  }
-  #separator{
-    clear:both;
-  }
-  input[type="text"], input[type="password"] {
-    @include inlineBlock;
-    background-color: $lightGrey;
-    width: 100%;
-  }
 
-  button {
-    @include inlineBlock;
-    text-align: center;
-    &:focus{
-      outline: none;
-    }
+  .checkboxDiv {
+    margin-top: 2%;
   }
 
   input[type="text"], input[type="password"] {
-    border-bottom: $commonBorder;
+    @include textInput;
     font-size: 20px;
     margin-top: 1%;
-    @include singleElement;
-    @include hover;
   }
-  label{
-    @include inlineBlock;
+
+  label {
     float: right;
-    width: 86%;
-    font-size: 20px;
     margin-left: 1%;
-    vertical-align: bottom;
+    @include label;
   }
-  .optionButton{
+
+  .optionButton {
     font-size: 30px;
-    width: 100%;
-    background-color: $lightGrey;
+    @include optionButton;
   }
-  #userMessageDiv{
-      @include singleElement;
-      margin-top: 2%;
-      font-size: 20px;
-      text-align: center;
-      clear: both;
+
+  #userMessageDiv {
+    margin-top: 2%;
+    @include notification;
   }
+
   input[type="checkbox"] {
-    -webkit-appearance: none;
-    display: inline-block;
-    cursor: pointer;
-    width: 10%;
+    @include checkbox;
     float: left;
     margin: 0;
-    background-color: $lightGrey;
-    border: $commonBorder;
-    position: relative;
-    vertical-align: bottom;
-
-    &:not(:checked) {
-      @include hover;
-    }
-
-    &:checked {
-      background-color: $violet;
-    }
   }
 
-  #signUpOptionButton {
-    border-bottom: $commonBorder;
-    color: $violet;
-  }
   .requestButton {
+    @include requestButton;
     height: 40px;
     width: 20%;
     margin-top: 4%;
     margin-left: 40%;
     margin-right: 40%;
-    background-color: $turquoise;
-    border-radius: 8px;
-    color: white;
     font-size: 20px;
-    &:hover {
-      background-color: $hoverTurquoise;
-    }
   }
 }
