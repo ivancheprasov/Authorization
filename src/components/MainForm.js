@@ -66,7 +66,7 @@ class MainForm extends React.Component {
                 <div id={"separator"} className={deviceType}/>
                 <div id={"userMessageDiv"} className={deviceType}>
                     {this.props.userMessage === "" ?
-                        <div><br/>{this.props.deviceType===deviceEnum.PHONE&&<br/>}</div> :
+                        <div><br/>{this.props.deviceType === deviceEnum.PHONE && <br/>}</div> :
                         this.props.userMessage}
                 </div>
                 <div id={"mainInputDiv"} className={deviceType}>
@@ -213,6 +213,7 @@ class MainForm extends React.Component {
         });
         this.hoverUnselectedButton("#signUpOptionButton");
     }
+
     identifyDeviceType() {
         const width = window.innerWidth;
         if (width >= 1200) {
@@ -221,12 +222,13 @@ class MainForm extends React.Component {
             this.props.setDeviceType(deviceEnum.PHONE);
         }
     }
+
     componentDidUpdate() {
         const jquery = $("input[type=checkbox]");
         const width = jquery.width();
         jquery.css({"height": `${width}`});
         const height = $("#signUpOptionButton").height();
-        $("#modifyOptionButton").css({"height":`${height}`});
+        $("#modifyOptionButton").css({"height": `${height}`});
     }
 
     handleModifyOptionClick() {
@@ -292,10 +294,14 @@ class MainForm extends React.Component {
     }
 
     isDataMissing() {
-        return (
-            this.isUsernameInputEmpty() ||
-            this.isPasswordInputEmpty()
-        );
+        if (!this.props.emptyFieldsAllowed && this.props.modifying) {
+            return this.isUsernameInputEmpty();
+        } else {
+            return (
+                this.isUsernameInputEmpty() ||
+                this.isPasswordInputEmpty()
+            );
+        }
     }
 
     highlightError() {
@@ -303,7 +309,7 @@ class MainForm extends React.Component {
             $("#usernameInput").css(HIGHLIGHT_ERROR);
             this.hoverError("#usernameInput");
         }
-        if (this.isPasswordInputEmpty()) {
+        if (this.isPasswordInputEmpty() && !(!this.props.emptyFieldsAllowed && this.props.modifying)) {
             $("#passwordInput").css(HIGHLIGHT_ERROR);
             this.hoverError("#passwordInput");
         }
@@ -374,10 +380,15 @@ class MainForm extends React.Component {
             this.hoverTextField("#firstNameInput");
             $("#lastNameInput").css(COMMON_TEXT_FIELD);
             this.hoverTextField("#lastNameInput");
+            $("#passwordInput").css(COMMON_TEXT_FIELD);
+            this.hoverTextField("#passwordInput");
         }
     }
 
     checkData() {
+        if (!this.props.emptyFieldsAllowed && this.props.modifying) {
+            return USERNAME_REGEX.test(this.props.username);
+        }
         return (
             USERNAME_REGEX.test(this.props.username) &&
             PASSWORD_REGEX.test(this.props.password)
@@ -385,9 +396,8 @@ class MainForm extends React.Component {
     }
 
     getData() {
-        const emptyFieldsAllowed = this.props.emptyFieldsAllowed;
         let data;
-        if (emptyFieldsAllowed) {
+        if (this.props.emptyFieldsAllowed || !this.props.modifying) {
             data = {
                 "username": this.props.username,
                 "first_name": this.props.firstName,
@@ -398,11 +408,11 @@ class MainForm extends React.Component {
         } else {
             data = {
                 "username": this.props.username,
-                "password": this.props.password,
                 "is_active": this.props.activeUser
             };
             if (!this.isFirstNameInputEmpty()) data["first_name"] = this.props.firstName;
             if (!this.isLastNameInputEmpty()) data["last_name"] = this.props.lastName;
+            if (!this.isPasswordInputEmpty()) data["password"] = this.props.password;
         }
         return data;
     }
@@ -474,13 +484,13 @@ class MainForm extends React.Component {
                     .then(
                         result => {
                             if (result.status === 201) this.props.setUserMessage("User has been created");
+                            this.ignoreOldWarning();
                         },
                         error => {
                             if (error.response.status === 401) this.props.isAuthorized(false);
                             if (error.response.status === 400) this.props.setUserMessage("User already exists");
                         })
                     .catch(() => this.props.setUserMessage("Unable to create new user"));
-                this.ignoreOldWarning();
             } else {
                 this.props.setUserMessage("User`s provided credentials are incorrect");
             }
