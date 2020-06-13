@@ -8,7 +8,7 @@ function App(props) {
     const authorized = props.user.authorized;
     return (
         <BrowserRouter>
-            <Route exact path={"/authorize"} component={AuthorizationForm}/>
+            <Route exact path={"/welcome"} component={AuthorizationForm}/>
             <Route exact path={"/main"} component={MainForm}/>
             {authorized && <Redirect to={"/main"}/>}
             {(!authorized && <Redirect to={"/welcome"}/>)}
