@@ -71,6 +71,7 @@ class MainForm extends React.Component {
                 </div>
                 <div id={"mainInputDiv"} className={deviceType}>
                     <form name={"mainForm"} className={deviceType}>
+                        <input type={"hidden"} value={"autoCompleteIsNoMore"} form={"mainForm"}/>
                         <input
                             type={"text"}
                             name={"usernameInput"}
