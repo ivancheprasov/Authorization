@@ -70,7 +70,7 @@ class MainForm extends React.Component {
                         this.props.userMessage}
                 </div>
                 <div id={"mainInputDiv"} className={deviceType}>
-                    <form name={"mainForm"} className={deviceType}>
+                    <form name={"mainForm"} className={deviceType} autoComplete={"off"}>
                         <input
                             type={"text"}
                             name={"usernameInput"}
@@ -81,7 +81,6 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.username || ""}
                             onChange={event => this.handleUsernameInputChange(event)}
-                            autoComplete={"new-password"}
                         />
                         <input
                             type={"text"}
@@ -93,7 +92,6 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.firstName || ""}
                             onChange={event => this.handleFirstNameInputChange(event)}
-                            autoComplete={"new-password"}
                         />
                         <input
                             type={"text"}
@@ -105,7 +103,6 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.lastName || ""}
                             onChange={event => this.handleLastNameInputChange(event)}
-                            autoComplete={"new-password"}
                         />
                         <input
                             type={"password"}
@@ -117,7 +114,6 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.password || ""}
                             onChange={event => this.handlePasswordInputChange(event)}
-                            autoComplete={"new-password"}
                         />
                         <div id={"activeUserCheckboxDiv"} className={"checkboxDiv"}>
                             <input type={"checkbox"}
