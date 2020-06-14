@@ -81,6 +81,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.username || ""}
                             onChange={event => this.handleUsernameInputChange(event)}
+                            autoComplete={"nope"}
                         />
                         <input
                             type={"text"}
@@ -92,6 +93,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.firstName || ""}
                             onChange={event => this.handleFirstNameInputChange(event)}
+                            autoComplete={"nope"}
                         />
                         <input
                             type={"text"}
@@ -103,6 +105,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.lastName || ""}
                             onChange={event => this.handleLastNameInputChange(event)}
+                            autoComplete={"nope"}
                         />
                         <input
                             type={"password"}
@@ -114,6 +117,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.password || ""}
                             onChange={event => this.handlePasswordInputChange(event)}
+                            autoComplete={"nope"}
                         />
                         <div id={"activeUserCheckboxDiv"} className={"checkboxDiv"}>
                             <input type={"checkbox"}
