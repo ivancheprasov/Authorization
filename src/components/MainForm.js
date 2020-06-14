@@ -71,7 +71,6 @@ class MainForm extends React.Component {
                 </div>
                 <div id={"mainInputDiv"} className={deviceType}>
                     <form name={"mainForm"} className={deviceType}>
-                        <input type={"hidden"} value={"autoCompleteIsNoMore"} form={"mainForm"}/>
                         <input
                             type={"text"}
                             name={"usernameInput"}
@@ -82,7 +81,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.username || ""}
                             onChange={event => this.handleUsernameInputChange(event)}
-                            autoComplete={"nope"}
+                            autoComplete={"new-password"}
                         />
                         <input
                             type={"text"}
@@ -94,7 +93,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.firstName || ""}
                             onChange={event => this.handleFirstNameInputChange(event)}
-                            autoComplete={"nope"}
+                            autoComplete={"new-password"}
                         />
                         <input
                             type={"text"}
@@ -106,7 +105,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.lastName || ""}
                             onChange={event => this.handleLastNameInputChange(event)}
-                            autoComplete={"nope"}
+                            autoComplete={"new-password"}
                         />
                         <input
                             type={"password"}
@@ -118,7 +117,7 @@ class MainForm extends React.Component {
                             className={deviceType}
                             value={this.props.password || ""}
                             onChange={event => this.handlePasswordInputChange(event)}
-                            autoComplete={"nope"}
+                            autoComplete={"new-password"}
                         />
                         <div id={"activeUserCheckboxDiv"} className={"checkboxDiv"}>
                             <input type={"checkbox"}
