@@ -43,7 +43,7 @@
 
   #userMessageDiv {
     margin-top: 7.5%;
-    @include notification($mobileElementWidth);
+    @include userMessage($mobileElementWidth);
   }
 
   input[type="checkbox"] {

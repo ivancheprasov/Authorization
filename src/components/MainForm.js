@@ -20,7 +20,7 @@ import {
     HIGHLIGHT_WARNING,
     HIGHLIGHT_ERROR,
     HOVER,
-    HOVER_WARNING, HOVER_ERROR, HOVER_BUTTON
+    HOVER_WARNING, HOVER_ERROR, HOVER_BUTTON, ERROR_MESSAGE, NOTIFICATION
 } from "../const/properties";
 import $ from "jquery";
 import {deviceEnum} from "../const/deviceEnum";
@@ -235,6 +235,22 @@ class MainForm extends React.Component {
         $("#modifyOptionButton").css({"height": `${height}`});
     }
 
+    setErrorMessage(message) {
+        const jquery = $("#userMessageDiv");
+        const height = jquery.height();
+        jquery.css(ERROR_MESSAGE);
+        this.props.setUserMessage(message);
+        if(height>jquery.height()) jquery.append('<br/><br/>');
+    }
+
+    setNotification(message) {
+        const jquery = $("#userMessageDiv");
+        const height = jquery.height();
+        jquery.css(NOTIFICATION);
+        this.props.setUserMessage(message);
+        if(height>jquery.height()) jquery.append('<br/><br/>');
+    }
+
     handleModifyOptionClick() {
         this.props.isModifying(true);
         $("#modifyOptionButton").css(SELECTED_BUTTON);
@@ -434,16 +450,16 @@ class MainForm extends React.Component {
                         }
                     });
                     if (!exists) {
-                        this.props.setUserMessage("User with provided username does not exist");
+                        this.setErrorMessage("User with provided username does not exist");
                         this.props.setUserId(null);
                     }
                 } else {
-                    this.props.setUserMessage("Unable to get the list of users");
+                    this.setErrorMessage("Unable to get the list of users");
                     this.props.setUserId(null);
                 }
             })
             .catch(() => {
-                this.props.setUserMessage("Unable to get the list of users");
+                this.setErrorMessage("Unable to get the list of users");
                 this.props.setUserId(null);
             });
     }
@@ -463,16 +479,25 @@ class MainForm extends React.Component {
                         headers: {Authorization: `Token ${this.props.token}`}
                     }).then(
                         result => {
-                            if (result.status === 200) this.props.setUserMessage("User information has been updated");
+                            if (result.status === 200) this.setNotification("User information has been updated");
                         },
                         error => {
-                            if (error.response.status === 401) this.props.isAuthorized(false);
+                            const status = error.response.status;
+                            switch (status) {
+                                case 401:
+                                    this.props.isAuthorized(false);
+                                    break;
+                                case 403:
+                                    throw new Error("Modifying this user requires permission");
+                                default:
+                                    throw new Error("User information update failed");
+                            }
                         })
-                        .catch(() => this.props.setUserMessage("User information update failed"));
+                        .catch(error => this.setErrorMessage(error.message));
                     this.ignoreOldWarning();
                 }
             } else {
-                this.props.setUserMessage("User`s provided credentials are incorrect");
+                this.setErrorMessage("User`s provided credentials are incorrect");
             }
         } else {
             this.highlightError();
@@ -487,16 +512,24 @@ class MainForm extends React.Component {
                 axios.post(url, this.getData(), {headers: {Authorization: `Token ${this.props.token}`}})
                     .then(
                         result => {
-                            if (result.status === 201) this.props.setUserMessage("User has been created");
+                            if (result.status === 201) this.setNotification("User has been created");
                             this.ignoreOldWarning();
                         },
                         error => {
-                            if (error.response.status === 401) this.props.isAuthorized(false);
-                            if (error.response.status === 400) this.props.setUserMessage("User already exists");
+                            const status = error.response.status;
+                            switch (status) {
+                                case 401:
+                                    this.props.isAuthorized(false);
+                                    break;
+                                case 400:
+                                    throw new Error("User already exists");
+                                default:
+                                    throw new Error("Unable to create new user");
+                            }
                         })
-                    .catch(() => this.props.setUserMessage("Unable to create new user"));
+                    .catch(error => this.setErrorMessage(error.message));
             } else {
-                this.props.setUserMessage("User`s provided credentials are incorrect");
+                this.setErrorMessage("User`s provided credentials are incorrect");
             }
         } else {
             this.highlightError();

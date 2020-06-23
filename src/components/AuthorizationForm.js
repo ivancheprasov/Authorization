@@ -31,7 +31,7 @@ class AuthorizationForm extends React.Component {
                 </div>
                 <div id={"userMessageDiv"} className={deviceType}>
                     {this.props.userMessage === "" ?
-                        <div><br/>{this.props.deviceType===deviceEnum.PHONE&&<br/>}</div> :
+                        <div><br/>{this.props.deviceType === deviceEnum.PHONE && <br/>}</div> :
                         this.props.userMessage}
                 </div>
                 <div id={"authorizationFormDiv"} className={deviceType}>
@@ -72,11 +72,13 @@ class AuthorizationForm extends React.Component {
             </div>
         );
     }
+
     componentDidMount() {
-        $(window).resize(()=>{
+        $(window).resize(() => {
             this.identifyDeviceType();
         });
     }
+
     identifyDeviceType() {
         const width = window.innerWidth;
         if (width >= 1200) {
@@ -85,6 +87,7 @@ class AuthorizationForm extends React.Component {
             this.props.setDeviceType(deviceEnum.PHONE);
         }
     }
+
     hoverTextField(element) {
         const jquery = $(element);
         jquery.hover(() => {
@@ -93,6 +96,7 @@ class AuthorizationForm extends React.Component {
             jquery.css(COMMON_TEXT_FIELD);
         });
     }
+
     hoverError(element) {
         const jquery = $(element);
         jquery.hover(() => {
@@ -101,6 +105,7 @@ class AuthorizationForm extends React.Component {
             jquery.css(HIGHLIGHT_ERROR);
         });
     }
+
     isUsernameInputEmpty() {
         const username = this.props.username;
         return (
@@ -163,8 +168,7 @@ class AuthorizationForm extends React.Component {
                                 this.props.isAuthorized(true);
                             }
                         },
-                        () => this.props.setUserMessage("Unable to log in with provided credentials"))
-                    .catch(() => this.props.setUserMessage("Authorization failed"));
+                        () => this.props.setUserMessage("Unable to log in with provided credentials"));
             } else {
                 this.props.setUserMessage("Provided credentials are incorrect");
             }

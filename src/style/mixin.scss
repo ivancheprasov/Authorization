@@ -51,11 +51,12 @@
   font-size: 20px;
   vertical-align: bottom;
 }
-@mixin notification($width:$singleElementWidth) {
+@mixin userMessage($width:$singleElementWidth) {
   @include singleElement($width);
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
   clear: both;
+  color: red;
 }
 
 @mixin optionButton{

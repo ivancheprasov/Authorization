@@ -40,7 +40,7 @@
 
   #userMessageDiv {
     margin-top: 2%;
-    @include notification;
+    @include userMessage;
   }
 
   input[type="checkbox"] {

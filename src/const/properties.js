@@ -14,3 +14,5 @@ export const HOVER = {"border-bottom": "1px solid #4b359a", "background-color": 
 export const HOVER_WARNING = {"border-bottom": "1px solid orange", "background-color": "#fffaaa"};
 export const HOVER_ERROR = {"border-bottom": "1px solid red", "background-color": "#fcc6c6"};
 export const HOVER_BUTTON = {"border-bottom": "1px solid #4b359a", "color": "#4b359a", "background-color": "#ebebeb"};
+export const ERROR_MESSAGE = {"color":"red"};
+export const NOTIFICATION = {"color":"black"};
