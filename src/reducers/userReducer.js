@@ -5,8 +5,7 @@ const initialState = {
     token: "",
     authorized: false,
     modifying: true,
-    activeUser: true,
-    emptyFieldsAllowed: false
+    activeUser: true
 };
 
 export function user(state = initialState, action) {
@@ -40,9 +39,6 @@ export function user(state = initialState, action) {
         }
         case actionEnum.SET_USER_ID: {
             return Object.assign({}, state, {id: action.payload});
-        }
-        case actionEnum.ALLOW_EMPTY_FIELDS: {
-            return Object.assign({}, state, {emptyFieldsAllowed: action.payload});
         }
         default:
             return state;

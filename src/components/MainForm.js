@@ -1,7 +1,6 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {
-    allowEmptyFields,
     isAuthorized,
     isModifying,
     isUserActive, setFirstName, setLastName,
@@ -36,7 +35,6 @@ class MainForm extends React.Component {
         this.props.setPassword("");
         this.props.isModifying(true);
         this.props.isUserActive(true);
-        this.props.allowEmptyFields(false);
         this.identifyDeviceType();
     }
 
@@ -130,18 +128,6 @@ class MainForm extends React.Component {
                             />
                             <label htmlFor={"activeUserCheckbox"} className={deviceType}>Is User Active?</label>
                         </div>
-                        {modifying &&
-                        <div id={"emptyFieldsCheckboxDiv"} className={`checkboxDiv ${deviceType}`}>
-                            <input type={"checkbox"}
-                                   id={"emptyFieldsCheckbox"}
-                                   name={"emptyFieldsCheckbox"}
-                                   form={"mainForm"}
-                                   className={deviceType}
-                                   checked={this.props.emptyFieldsAllowed}
-                                   onChange={event => this.handleEmptyFieldsAllowedChange(event)}
-                            />
-                            <label htmlFor={"emptyFieldsCheckbox"} className={deviceType}>Send empty fields</label>
-                        </div>}
                         {modifying &&
                         <button
                             id={"modifyButton"}
@@ -240,7 +226,7 @@ class MainForm extends React.Component {
         const height = jquery.height();
         jquery.css(ERROR_MESSAGE);
         this.props.setUserMessage(message);
-        if(height>jquery.height()) jquery.append('<br/><br/>');
+        if (height > jquery.height()) jquery.append('<br/><br/>');
     }
 
     setNotification(message) {
@@ -248,7 +234,7 @@ class MainForm extends React.Component {
         const height = jquery.height();
         jquery.css(NOTIFICATION);
         this.props.setUserMessage(message);
-        if(height>jquery.height()) jquery.append('<br/><br/>');
+        if (height > jquery.height()) jquery.append('<br/><br/>');
     }
 
     handleModifyOptionClick() {
@@ -257,12 +243,14 @@ class MainForm extends React.Component {
         $("#signUpOptionButton").css(UNSELECTED_BUTTON);
         this.hoverUnselectedButton("#signUpOptionButton");
         this.noHover("#modifyOptionButton");
-        if (!this.props.emptyFieldsAllowed) {
-            $("#firstNameInput").css(COMMON_TEXT_FIELD);
-            this.hoverTextField("#firstNameInput");
-            $("#lastNameInput").css(COMMON_TEXT_FIELD);
-            this.hoverTextField("#lastNameInput");
-        }
+        $("#firstNameInput").css(COMMON_TEXT_FIELD);
+        this.hoverTextField("#firstNameInput");
+        $("#lastNameInput").css(COMMON_TEXT_FIELD);
+        this.hoverTextField("#lastNameInput");
+        $("#usernameInput").css(COMMON_TEXT_FIELD);
+        this.hoverTextField("#usernameInput");
+        $("#passwordInput").css(COMMON_TEXT_FIELD);
+        this.hoverTextField("#passwordInput");
     }
 
     handleSignUpOptionClick() {
@@ -279,6 +267,10 @@ class MainForm extends React.Component {
             $("#lastNameInput").css(HIGHLIGHT_WARNING);
             this.hoverWarning("#lastNameInput");
         }
+        $("#usernameInput").css(COMMON_TEXT_FIELD);
+        this.hoverTextField("#usernameInput");
+        $("#passwordInput").css(COMMON_TEXT_FIELD);
+        this.hoverTextField("#passwordInput");
     }
 
     isUsernameInputEmpty() {
@@ -314,7 +306,7 @@ class MainForm extends React.Component {
     }
 
     isDataMissing() {
-        if (!this.props.emptyFieldsAllowed && this.props.modifying) {
+        if (this.props.modifying) {
             return this.isUsernameInputEmpty();
         } else {
             return (
@@ -329,7 +321,7 @@ class MainForm extends React.Component {
             $("#usernameInput").css(HIGHLIGHT_ERROR);
             this.hoverError("#usernameInput");
         }
-        if (this.isPasswordInputEmpty() && !(!this.props.emptyFieldsAllowed && this.props.modifying)) {
+        if (this.isPasswordInputEmpty() && !this.props.modifying) {
             $("#passwordInput").css(HIGHLIGHT_ERROR);
             this.hoverError("#passwordInput");
         }
@@ -353,7 +345,7 @@ class MainForm extends React.Component {
         jquery.css(COMMON_TEXT_FIELD);
         this.hoverTextField("#firstNameInput");
         this.props.setFirstName(event.target.value);
-        if (this.props.emptyFieldsAllowed || !this.props.modifying) {
+        if (!this.props.modifying) {
             if (event.target.value === "") {
                 jquery.css(HIGHLIGHT_WARNING);
                 this.hoverWarning("#firstNameInput");
@@ -366,7 +358,7 @@ class MainForm extends React.Component {
         jquery.css(COMMON_TEXT_FIELD);
         this.hoverTextField("#lastNameInput");
         this.props.setLastName(event.target.value);
-        if (this.props.emptyFieldsAllowed || !this.props.modifying) {
+        if (!this.props.modifying) {
             if (event.target.value === "") {
                 jquery.css(HIGHLIGHT_WARNING);
                 this.hoverWarning("#lastNameInput");
@@ -384,29 +376,8 @@ class MainForm extends React.Component {
         this.props.isUserActive(event.target.checked);
     }
 
-    handleEmptyFieldsAllowedChange(event) {
-        this.props.allowEmptyFields(event.target.checked);
-        if (event.target.checked || !this.props.modifying) {
-            if (this.isFirstNameInputEmpty()) {
-                $("#firstNameInput").css(HIGHLIGHT_WARNING);
-                this.hoverWarning("#firstNameInput");
-            }
-            if (this.isLastNameInputEmpty()) {
-                $("#lastNameInput").css(HIGHLIGHT_WARNING);
-                this.hoverWarning("#lastNameInput");
-            }
-        } else {
-            $("#firstNameInput").css(COMMON_TEXT_FIELD);
-            this.hoverTextField("#firstNameInput");
-            $("#lastNameInput").css(COMMON_TEXT_FIELD);
-            this.hoverTextField("#lastNameInput");
-            $("#passwordInput").css(COMMON_TEXT_FIELD);
-            this.hoverTextField("#passwordInput");
-        }
-    }
-
     checkData() {
-        if (!this.props.emptyFieldsAllowed && this.props.modifying) {
+        if (this.isPasswordInputEmpty() && this.props.modifying) {
             return USERNAME_REGEX.test(this.props.username);
         }
         return (
@@ -417,7 +388,7 @@ class MainForm extends React.Component {
 
     getData() {
         let data;
-        if (this.props.emptyFieldsAllowed || !this.props.modifying) {
+        if (!this.props.modifying) {
             data = {
                 "username": this.props.username,
                 "first_name": this.props.firstName,
@@ -472,29 +443,24 @@ class MainForm extends React.Component {
                 const id = this.props.id;
                 if (id != null) {
                     const url = `${BASE_URL}/api/v1/users/${id}/`;
-                    axios({
-                        method: this.props.emptyFieldsAllowed ? 'put' : 'patch',
-                        url: url,
-                        data: this.getData(),
-                        headers: {Authorization: `Token ${this.props.token}`}
-                    }).then(
-                        result => {
-                            if (result.status === 200) this.setNotification("User information has been updated");
-                        },
-                        error => {
-                            const status = error.response.status;
-                            switch (status) {
-                                case 401:
-                                    this.props.isAuthorized(false);
-                                    break;
-                                case 403:
-                                    throw new Error("Modifying this user requires permission");
-                                default:
-                                    throw new Error("User information update failed");
-                            }
-                        })
+                    axios.patch(url, this.getData(), {headers: {Authorization: `Token ${this.props.token}`}})
+                        .then(
+                            result => {
+                                if (result.status === 200) this.setNotification("User information has been updated");
+                            },
+                            error => {
+                                const status = error.response.status;
+                                switch (status) {
+                                    case 401:
+                                        this.props.isAuthorized(false);
+                                        break;
+                                    case 403:
+                                        throw new Error("Modifying this user requires permission");
+                                    default:
+                                        throw new Error("User information update failed");
+                                }
+                            })
                         .catch(error => this.setErrorMessage(error.message));
-                    this.ignoreOldWarning();
                 }
             } else {
                 this.setErrorMessage("User`s provided credentials are incorrect");
@@ -548,7 +514,6 @@ const mapStateToProps = store => {
         lastName: store.user.lastName,
         activeUser: store.user.activeUser,
         id: store.user.id,
-        emptyFieldsAllowed: store.user.emptyFieldsAllowed,
         deviceType: store.device.deviceType
     }
 };
@@ -563,7 +528,6 @@ const mapDispatchToProps = dispatch => {
         setLastName: lastName => dispatch(setLastName(lastName)),
         isUserActive: flag => dispatch(isUserActive(flag)),
         setUserId: id => dispatch(setUserId(id)),
-        allowEmptyFields: flag => dispatch(allowEmptyFields(flag)),
         setDeviceType: type => dispatch(setDeviceType(type))
     }
 };

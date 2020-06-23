@@ -3,3 +3,6 @@ body {
   font-family: "Helvetica", sans-serif;
   color: black;
 }
+button::-moz-focus-inner{
+  border: 0;
+}

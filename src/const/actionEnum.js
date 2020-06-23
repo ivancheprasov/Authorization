@@ -9,6 +9,5 @@ export const actionEnum=Object.freeze({
     SET_LAST_NAME: 7,
     IS_USER_ACTIVE: 8,
     SET_USER_ID: 9,
-    ALLOW_EMPTY_FIELDS: 10,
-    SET_DEVICE_TYPE: 11
+    SET_DEVICE_TYPE: 10
 });

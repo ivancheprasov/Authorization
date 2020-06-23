@@ -13,7 +13,7 @@
     @include halfScreenDiv(left);
   }
 
-  #signUpOptionDiv, #emptyFieldsCheckboxDiv {
+  #signUpOptionDiv{
     @include halfScreenDiv(right);
   }
 
