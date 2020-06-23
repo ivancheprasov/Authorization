@@ -411,26 +411,33 @@ class MainForm extends React.Component {
     async getUserId() {
         const url = `${BASE_URL}/api/v1/users/`;
         await axios.get(url, {headers: {Authorization: `Token ${this.props.token}`}})
-            .then(result => {
-                if (result.status === 200) {
-                    let exists = false;
-                    result.data.forEach(user => {
-                        if (user.username === this.props.username) {
-                            this.props.setUserId(user.id);
-                            exists = true;
+            .then(
+                result => {
+                    if (result.status === 200) {
+                        let exists = false;
+                        result.data.forEach(user => {
+                            if (user.username === this.props.username) {
+                                this.props.setUserId(user.id);
+                                exists = true;
+                            }
+                        });
+                        if (!exists) {
+                            this.setErrorMessage("User with provided username does not exist");
+                            this.props.setUserId(null);
                         }
-                    });
-                    if (!exists) {
-                        this.setErrorMessage("User with provided username does not exist");
+                    } else {
+                        this.setErrorMessage("Unable to get the list of users");
                         this.props.setUserId(null);
                     }
-                } else {
-                    this.setErrorMessage("Unable to get the list of users");
-                    this.props.setUserId(null);
-                }
-            })
-            .catch(() => {
-                this.setErrorMessage("Unable to get the list of users");
+                }, error => {
+                    if (error.response.status === 401) {
+                        this.props.isAuthorized(false);
+                    } else {
+                        throw new Error("Unable to get the list of users");
+                    }
+                })
+            .catch(error => {
+                this.setErrorMessage(error.message);
                 this.props.setUserId(null);
             });
     }
