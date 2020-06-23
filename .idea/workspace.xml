@@ -1,9 +1,364 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="407baa3a-1b72-4b50-b64a-9b0e99400cac" name="Default Changelist" comment="Fixed">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/authorizationTask.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/userActions.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
+  </component>
   <component name="ProjectId" id="1d8EQ5vrlxz5uHZX0lsT4es3fdv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Лентяй\WebstormProjects\Emphasoft\test\src\components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Лентяй\WebstormProjects\Emphasoft\test\src\reducers" />
+      <recent name="C:\Users\Лентяй\WebstormProjects\Emphasoft\test\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.run build">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="install" />
+      <arguments value="node-sass" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="install" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="install" />
+      <arguments value="path" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="run build" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.run build" />
+      <item itemvalue="npm.install" />
+      <item itemvalue="npm.npm start" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="407baa3a-1b72-4b50-b64a-9b0e99400cac" name="Default Changelist" comment="" />
+      <created>1591798300381</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591798300381</updated>
+      <workItem from="1591798304048" duration="20922000" />
+      <workItem from="1591829295232" duration="53946000" />
+      <workItem from="1591979308518" duration="6940000" />
+      <workItem from="1591986337986" duration="9961000" />
+      <workItem from="1592049640932" duration="13304000" />
+      <workItem from="1592836789164" duration="12540000" />
+      <workItem from="1592920907347" duration="4445000" />
+    </task>
+    <task id="LOCAL-00001" summary="The authorization, creation and update of a user is complete. The desktop layout is also finished.">
+      <created>1591985802402</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591985802402</updated>
+    </task>
+    <task id="LOCAL-00002" summary="The authorization, creation and update of a user is complete. The desktop layout is also finished.">
+      <created>1591986505331</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1591986505331</updated>
+    </task>
+    <task id="LOCAL-00003" summary="The responsive design is done.">
+      <created>1592012372424</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592012372424</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added a few mixins.">
+      <created>1592052872417</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592052872417</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Changed url.">
+      <created>1592053437158</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592053437158</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed highlighting errors and warnings.">
+      <created>1592055526648</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1592055526648</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added the Express server.">
+      <created>1592057920960</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592057920960</updated>
+    </task>
+    <task id="LOCAL-00008" summary="The autocomplete feature was fixed.">
+      <created>1592130061531</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1592130061531</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Another attempt to fix the browsers` autocomplete.">
+      <created>1592130418542</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592130418542</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Another attempt to fix the autocomplete.">
+      <created>1592130697130</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1592130697130</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Another attempt to fix the autocomplete.">
+      <created>1592132967447</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1592132967447</updated>
+    </task>
+    <task id="LOCAL-00012" summary="The autocomplete feature is finally fixed.">
+      <created>1592133196706</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1592133196706</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Error notifications are more noticeable now. Fixed all request handlers.">
+      <created>1592876841687</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1592876841689</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Removed allowEmptyFields checkbox.">
+      <created>1592923462515</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1592923462515</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed getUserId request. Added 401 handler.">
+      <created>1592924868211</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1592924868211</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="The authorization, creation and update of a user is complete. The desktop layout is also finished." />
+    <MESSAGE value="The responsive design is done." />
+    <MESSAGE value="Added a few mixins." />
+    <MESSAGE value="Changed url." />
+    <MESSAGE value="Fixed highlighting errors and warnings." />
+    <MESSAGE value="Added the Express server." />
+    <MESSAGE value="The autocomplete feature was fixed." />
+    <MESSAGE value="Another attempt to fix the browsers` autocomplete." />
+    <MESSAGE value="Another attempt to fix the autocomplete." />
+    <MESSAGE value="The autocomplete feature is finally fixed." />
+    <MESSAGE value="Error notifications are more noticeable now. Fixed all request handlers." />
+    <MESSAGE value="Removed allowEmptyFields checkbox." />
+    <MESSAGE value="Fixed getUserId request. Added 401 handler." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed getUserId request. Added 401 handler." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="70" key="#ESLint" timestamp="1591801965651">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1591801965651" />
+    <state x="361" y="70" key="#Inspections" timestamp="1591803810884">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1591803810884" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592056710202">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1592056710202" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591829838322">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591829838322" />
+    <state x="374" y="5" key="CommitChangelistDialog2" timestamp="1592924866059">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="374" y="5" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1592924866059" />
+    <state x="405" y="190" key="EditFileWatcherDialog" timestamp="1591979401892">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="405" y="190" key="EditFileWatcherDialog/0.0.1536.824@0.0.1536.824" timestamp="1591979401892" />
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1592920996977">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592920996977" />
+    <state x="626" y="305" key="Github.ShareDialog" timestamp="1591986526345">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="626" y="305" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1591986526345" />
+    <state width="1515" height="160" key="GridCell.Tab.0.bottom" timestamp="1592924711103">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592924711103" />
+    <state width="1515" height="160" key="GridCell.Tab.0.center" timestamp="1592924711102">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592924711102" />
+    <state width="1515" height="160" key="GridCell.Tab.0.left" timestamp="1592924711102">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592924711102" />
+    <state width="1515" height="160" key="GridCell.Tab.0.right" timestamp="1592924711102">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592924711102" />
+    <state x="277" y="54" key="SettingsEditor" timestamp="1591957102774">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591957102774" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1592924871985">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1592924871985" />
+    <state x="463" y="17" width="609" height="789" key="find.popup" timestamp="1592052387671">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="463" y="17" width="609" height="789" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1592052387671" />
+    <state x="506" y="306" key="git4idea.ui.GitResetDialog" timestamp="1591986231696">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="506" y="306" key="git4idea.ui.GitResetDialog/0.0.1536.824@0.0.1536.824" timestamp="1591986231696" />
+    <state x="506" y="312" key="git4idea.ui.GitStashDialog" timestamp="1591986212498">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="506" y="312" key="git4idea.ui.GitStashDialog/0.0.1536.824@0.0.1536.824" timestamp="1591986212498" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1591886328867">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1591886328867" />
   </component>
 </project>

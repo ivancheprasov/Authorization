@@ -60,9 +60,3 @@ export function setUserId(id){
         payload: id
     }
 }
-export function allowEmptyFields(flag) {
-    return{
-        type: actionEnum.ALLOW_EMPTY_FIELDS,
-        payload: flag
-    }
-}
