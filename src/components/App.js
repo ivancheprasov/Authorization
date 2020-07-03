@@ -17,8 +17,7 @@ const App = props => {
 };
 
 const mapStateToProps = store => {
-    const {user} = store;
-    return user;
+    return store.user;
 };
 export default connect(
     mapStateToProps
