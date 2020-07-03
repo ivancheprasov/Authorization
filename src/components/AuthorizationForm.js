@@ -23,19 +23,20 @@ class AuthorizationForm extends React.Component {
     }
 
     render() {
-        const deviceType = this.props.deviceType === deviceEnum.DESKTOP ? "desktop" : "mobile";
+        const {userMessage, deviceType, username, password} = this.props;
+        const deviceTypeClass = deviceType === deviceEnum.DESKTOP ? "desktop" : "mobile";
         return (
-            <div id={"authorizationDiv"} className={deviceType}>
-                <div id={"authorizationTitleDiv"} className={deviceType}>
+            <div id={"authorizationDiv"} className={deviceTypeClass}>
+                <div id={"authorizationTitleDiv"} className={deviceTypeClass}>
                     WELCOME
                 </div>
-                <div id={"userMessageDiv"} className={deviceType}>
-                    {this.props.userMessage === "" ?
-                        <div><br/>{this.props.deviceType === deviceEnum.PHONE && <br/>}</div> :
-                        this.props.userMessage}
+                <div id={"userMessageDiv"} className={deviceTypeClass}>
+                    {userMessage === "" ?
+                        <div><br/>{deviceType === deviceEnum.PHONE && <br/>}</div> :
+                        userMessage}
                 </div>
-                <div id={"authorizationFormDiv"} className={deviceType}>
-                    <form name={"authorizationForm"} className={deviceType}>
+                <div id={"authorizationFormDiv"} className={deviceTypeClass}>
+                    <form name={"authorizationForm"} className={deviceTypeClass}>
                         <input
                             type={"text"}
                             name={"usernameInput"}
@@ -43,9 +44,10 @@ class AuthorizationForm extends React.Component {
                             form={"authorizationForm"}
                             placeholder={"Username"}
                             maxLength={150}
-                            className={deviceType}
-                            value={this.props.username || ""}
+                            className={deviceTypeClass}
+                            value={username || ""}
                             onChange={event => this.usernameInputChange(event)}
+                            autoComplete={"new-password"}
                         />
                         <input
                             type={"password"}
@@ -54,14 +56,15 @@ class AuthorizationForm extends React.Component {
                             form={"authorizationForm"}
                             placeholder={"Password"}
                             maxLength={128}
-                            className={deviceType}
-                            value={this.props.password || ""}
+                            className={deviceTypeClass}
+                            value={password || ""}
                             onChange={event => this.passwordInputChange(event)}
+                            autoComplete={"new-password"}
                         />
                         <button
                             id={"signInButton"}
                             type={"button"}
-                            className={`requestButton ${deviceType}`}
+                            className={`requestButton ${deviceTypeClass}`}
                             form={"authorizationForm"}
                             onClick={() => this.signIn()}
                         >
@@ -107,7 +110,7 @@ class AuthorizationForm extends React.Component {
     }
 
     isUsernameInputEmpty() {
-        const username = this.props.username;
+        const {username} = this.props;
         return (
             username === "" ||
             username == null
@@ -115,7 +118,7 @@ class AuthorizationForm extends React.Component {
     }
 
     isPasswordInputEmpty() {
-        const password = this.props.password;
+        const {password} = this.props;
         return (
             password === "" ||
             password == null
@@ -142,16 +145,18 @@ class AuthorizationForm extends React.Component {
     }
 
     checkCredentials() {
+        const {username, password} = this.props;
         return (
-            USERNAME_REGEX.test(this.props.username) &&
-            PASSWORD_REGEX.test(this.props.password)
+            USERNAME_REGEX.test(username) &&
+            PASSWORD_REGEX.test(password)
         );
     }
 
     getCredentials() {
+        const {username, password} = this.props;
         return {
-            "username": this.props.username,
-            "password": this.props.password
+            "username": username,
+            "password": password
         }
     }
 
@@ -186,12 +191,9 @@ class AuthorizationForm extends React.Component {
 }
 
 const mapStateToProps = store => {
-    return {
-        username: store.user.username,
-        password: store.user.password,
-        userMessage: store.user.userMessage,
-        deviceType: store.device.deviceType
-    }
+    const {username, password, userMessage} = store.user;
+    const {deviceType} = store.device;
+    return {username, password, userMessage, deviceType};
 };
 const mapDispatchToProps = dispatch => {
     return {

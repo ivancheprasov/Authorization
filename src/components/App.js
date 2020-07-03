@@ -4,8 +4,8 @@ import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import AuthorizationForm from "./AuthorizationForm";
 import MainForm from "./MainForm";
 
-function App(props) {
-    const authorized = props.user.authorized;
+const App = props => {
+    const authorized = props.authorized;
     return (
         <BrowserRouter>
             <Route exact path={"/welcome"} component={AuthorizationForm}/>
@@ -14,12 +14,11 @@ function App(props) {
             {(!authorized && <Redirect to={"/welcome"}/>)}
         </BrowserRouter>
     );
-}
+};
 
 const mapStateToProps = store => {
-    return {
-        user: store.user
-    }
+    const {user} = store;
+    return user;
 };
 export default connect(
     mapStateToProps

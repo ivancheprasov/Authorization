@@ -39,36 +39,36 @@ class MainForm extends React.Component {
     }
 
     render() {
-        const deviceType = this.props.deviceType === deviceEnum.DESKTOP ? "desktop" : "mobile";
-        const modifying = this.props.modifying;
+        const {userMessage, deviceType, username, firstName, lastName, password, activeUser, modifying} = this.props;
+        const deviceTypeClass = deviceType === deviceEnum.DESKTOP ? "desktop" : "mobile";
         return (
-            <div id={"mainFormDiv"} className={deviceType}>
-                <div id={"modifyOptionDiv"} className={`optionDiv ${deviceType}`}>
+            <div id={"mainFormDiv"} className={deviceTypeClass}>
+                <div id={"modifyOptionDiv"} className={`optionDiv ${deviceTypeClass}`}>
                     <button
                         id={"modifyOptionButton"}
-                        className={`optionButton ${deviceType}`}
+                        className={`optionButton ${deviceTypeClass}`}
                         onClick={() => this.handleModifyOptionClick()}
                     >
                         MODIFY
                     </button>
                 </div>
-                <div id={"signUpOptionDiv"} className={`optionDiv ${deviceType}`}>
+                <div id={"signUpOptionDiv"} className={`optionDiv ${deviceTypeClass}`}>
                     <button
                         id={"signUpOptionButton"}
-                        className={`optionButton ${deviceType}`}
+                        className={`optionButton ${deviceTypeClass}`}
                         onClick={() => this.handleSignUpOptionClick()}
                     >
                         SIGN UP
                     </button>
                 </div>
-                <div id={"separator"} className={deviceType}/>
-                <div id={"userMessageDiv"} className={deviceType}>
-                    {this.props.userMessage === "" ?
-                        <div><br/>{this.props.deviceType === deviceEnum.PHONE && <br/>}</div> :
-                        this.props.userMessage}
+                <div id={"separator"} className={deviceTypeClass}/>
+                <div id={"userMessageDiv"} className={deviceTypeClass}>
+                    {userMessage === "" ?
+                        <div><br/>{deviceType === deviceEnum.PHONE && <br/>}</div> :
+                        userMessage}
                 </div>
-                <div id={"mainInputDiv"} className={deviceType}>
-                    <form name={"mainForm"} className={deviceType}>
+                <div id={"mainInputDiv"} className={deviceTypeClass}>
+                    <form name={"mainForm"} className={deviceTypeClass}>
                         <input
                             type={"text"}
                             name={"usernameInput"}
@@ -76,8 +76,8 @@ class MainForm extends React.Component {
                             form={"mainForm"}
                             placeholder={"Username"}
                             maxLength={150}
-                            className={deviceType}
-                            value={this.props.username || ""}
+                            className={deviceTypeClass}
+                            value={username || ""}
                             onChange={event => this.handleUsernameInputChange(event)}
                             autoComplete={"new-password"}
                         />
@@ -88,8 +88,8 @@ class MainForm extends React.Component {
                             form={"mainForm"}
                             placeholder={"First Name"}
                             maxLength={30}
-                            className={deviceType}
-                            value={this.props.firstName || ""}
+                            className={deviceTypeClass}
+                            value={firstName || ""}
                             onChange={event => this.handleFirstNameInputChange(event)}
                             autoComplete={"new-password"}
                         />
@@ -100,8 +100,8 @@ class MainForm extends React.Component {
                             form={"mainForm"}
                             placeholder={"Last Name"}
                             maxLength={150}
-                            className={deviceType}
-                            value={this.props.lastName || ""}
+                            className={deviceTypeClass}
+                            value={lastName || ""}
                             onChange={event => this.handleLastNameInputChange(event)}
                             autoComplete={"new-password"}
                         />
@@ -112,8 +112,8 @@ class MainForm extends React.Component {
                             form={"mainForm"}
                             placeholder={"Password"}
                             maxLength={128}
-                            className={deviceType}
-                            value={this.props.password || ""}
+                            className={deviceTypeClass}
+                            value={password || ""}
                             onChange={event => this.handlePasswordInputChange(event)}
                             autoComplete={"new-password"}
                         />
@@ -122,18 +122,18 @@ class MainForm extends React.Component {
                                    id={"activeUserCheckbox"}
                                    name={"activeUserCheckbox"}
                                    form={"mainForm"}
-                                   className={deviceType}
-                                   checked={this.props.activeUser}
+                                   className={deviceTypeClass}
+                                   checked={activeUser}
                                    onChange={event => this.handleActiveUserChange(event)}
                             />
-                            <label htmlFor={"activeUserCheckbox"} className={deviceType}>Is User Active?</label>
+                            <label htmlFor={"activeUserCheckbox"} className={deviceTypeClass}>Is User Active?</label>
                         </div>
                         {modifying &&
                         <button
                             id={"modifyButton"}
                             type={"button"}
                             form={"mainForm"}
-                            className={`requestButton ${deviceType}`}
+                            className={`requestButton ${deviceTypeClass}`}
                             onClick={() => this.modify()}
                         >
                             Modify
@@ -143,7 +143,7 @@ class MainForm extends React.Component {
                             id={"signUpButton"}
                             type={"button"}
                             form={"mainForm"}
-                            className={`requestButton ${deviceType}`}
+                            className={`requestButton ${deviceTypeClass}`}
                             onClick={() => this.signUp()}
                         >
                             Sign Up
@@ -274,7 +274,7 @@ class MainForm extends React.Component {
     }
 
     isUsernameInputEmpty() {
-        const username = this.props.username;
+        const {username} = this.props;
         return (
             username === "" ||
             username == null
@@ -282,7 +282,7 @@ class MainForm extends React.Component {
     }
 
     isPasswordInputEmpty() {
-        const password = this.props.password;
+        const {password} = this.props;
         return (
             password === "" ||
             password == null
@@ -290,7 +290,7 @@ class MainForm extends React.Component {
     }
 
     isFirstNameInputEmpty() {
-        const firstName = this.props.firstName;
+        const {firstName} = this.props;
         return (
             firstName === "" ||
             firstName == null
@@ -298,7 +298,7 @@ class MainForm extends React.Component {
     }
 
     isLastNameInputEmpty() {
-        const lastName = this.props.lastName;
+        const {lastName} = this.props;
         return (
             lastName === "" ||
             lastName == null
@@ -377,46 +377,49 @@ class MainForm extends React.Component {
     }
 
     checkData() {
-        if (this.isPasswordInputEmpty() && this.props.modifying) {
-            return USERNAME_REGEX.test(this.props.username);
+        const {username, password, modifying} = this.props;
+        if (this.isPasswordInputEmpty() && modifying) {
+            return USERNAME_REGEX.test(username);
         }
         return (
-            USERNAME_REGEX.test(this.props.username) &&
-            PASSWORD_REGEX.test(this.props.password)
+            USERNAME_REGEX.test(username) &&
+            PASSWORD_REGEX.test(password)
         );
     }
 
     getData() {
         let data;
-        if (!this.props.modifying) {
+        const {username, firstName, lastName, password, activeUser, modifying} = this.props;
+        if (modifying) {
             data = {
-                "username": this.props.username,
-                "first_name": this.props.firstName,
-                "last_name": this.props.lastName,
-                "password": this.props.password,
-                "is_active": this.props.activeUser
+                "username": username,
+                "is_active": activeUser
             };
+            if (!this.isFirstNameInputEmpty()) data = {...data, "first_name": firstName};
+            if (!this.isLastNameInputEmpty()) data = {...data, "last_name": lastName};
+            if (!this.isPasswordInputEmpty()) data = {...data, "password": password};
         } else {
             data = {
-                "username": this.props.username,
-                "is_active": this.props.activeUser
+                "username": username,
+                "first_name": firstName,
+                "last_name": lastName,
+                "password": password,
+                "is_active": activeUser
             };
-            if (!this.isFirstNameInputEmpty()) data["first_name"] = this.props.firstName;
-            if (!this.isLastNameInputEmpty()) data["last_name"] = this.props.lastName;
-            if (!this.isPasswordInputEmpty()) data["password"] = this.props.password;
         }
         return data;
     }
 
     async getUserId() {
         const url = `${BASE_URL}/api/v1/users/`;
-        await axios.get(url, {headers: {Authorization: `Token ${this.props.token}`}})
+        const {username, token} = this.props;
+        await axios.get(url, {headers: {Authorization: `Token ${token}`}})
             .then(
                 result => {
                     if (result.status === 200) {
                         let exists = false;
                         result.data.forEach(user => {
-                            if (user.username === this.props.username) {
+                            if (user.username === username) {
                                 this.props.setUserId(user.id);
                                 exists = true;
                             }
@@ -447,10 +450,10 @@ class MainForm extends React.Component {
         if (!(this.isDataMissing())) {
             if (this.checkData()) {
                 await this.getUserId();
-                const id = this.props.id;
+                const {id, token} = this.props;
                 if (id != null) {
                     const url = `${BASE_URL}/api/v1/users/${id}/`;
-                    axios.patch(url, this.getData(), {headers: {Authorization: `Token ${this.props.token}`}})
+                    axios.patch(url, this.getData(), {headers: {Authorization: `Token ${token}`}})
                         .then(
                             result => {
                                 if (result.status === 200) this.setNotification("User information has been updated");
@@ -511,18 +514,9 @@ class MainForm extends React.Component {
 }
 
 const mapStateToProps = store => {
-    return {
-        username: store.user.username,
-        password: store.user.password,
-        modifying: store.user.modifying,
-        userMessage: store.user.userMessage,
-        token: store.user.token,
-        firstName: store.user.firstName,
-        lastName: store.user.lastName,
-        activeUser: store.user.activeUser,
-        id: store.user.id,
-        deviceType: store.device.deviceType
-    }
+    const {username, password, modifying, userMessage, token, firstName, lastName, activeUser, id} = store.user;
+    const {deviceType} = store.device;
+    return {username, password, modifying, userMessage, token, firstName, lastName, activeUser, id, deviceType};
 };
 const mapDispatchToProps = dispatch => {
     return {
